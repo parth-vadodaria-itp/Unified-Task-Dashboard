@@ -1,0 +1,56 @@
+{
+    "name": "unified-task-dashboard",
+    "version": "1.0.0",
+    "description": "Unified Task Dashboard Backend",
+    "license": "ISC",
+    "author": "",
+    "type": "module",
+    "main": "src/server.js",
+    "scripts": {
+        "predev": "npm run format && npm run lint",
+        "dev": "node --watch src/server.js",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier . --write --ignore-unknown",
+        "test": "c8 mocha tests/**/*.test.js",
+        "posttest": "c8 check-coverage"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "c8": "^11.0.0",
+        "eslint": "^10.0.3",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.5",
+        "globals": "^17.4.0",
+        "mocha": "^11.7.5",
+        "prettier": "^3.8.1"
+    },
+    "dependencies": {
+        "cors": "^2.8.6",
+        "dotenv": "^17.3.1",
+        "express": "^5.2.1"
+    },
+    "c8": {
+        "check-coverage": true,
+        "lines": 70,
+        "functions": 70,
+        "branches": 70,
+        "statements": 70,
+        "per-file": true,
+        "include": [
+            "src/**/*.js"
+        ],
+        "exclude": [
+            "src/server.js",
+            "tests/**/*.js",
+            "node_modules/**",
+            "coverage/**",
+            "dist/**",
+            "build/**"
+        ],
+        "reporter": [
+            "text",
+            "html"
+        ]
+    }
+}
