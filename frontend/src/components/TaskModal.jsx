@@ -49,8 +49,8 @@ const TaskModal = ({
 
     useEffect(() => {
         fetchAllPriorities().then((priorities) => {
-            setPriorityOptions(priorities);
-            setTaskPriority(priorities[0].title);
+            setPriorityOptions(priorities)
+            setTaskPriority(priorities[0].title)
         })
         fetchAllCategories().then(setTaskCategories)
     }, [])
@@ -76,7 +76,9 @@ const TaskModal = ({
                     </div>
                 </header>
                 <div className="grid gap-1">
-                    <label htmlFor="title">Task Title <span className="text-red-500">*</span></label>
+                    <label htmlFor="title">
+                        Task Title <span className="text-red-500">*</span>
+                    </label>
                     <input
                         type="text"
                         placeholder="What needs to be done?"
@@ -88,7 +90,9 @@ const TaskModal = ({
                     />
                 </div>
                 <div className="grid gap-1">
-                    <label>Priority <span className="text-red-500">*</span></label>
+                    <label>
+                        Priority <span className="text-red-500">*</span>
+                    </label>
                     <div className="flex gap-1.5 md:gap-2">
                         {priorityOptions.map((option) => (
                             <div
@@ -108,7 +112,9 @@ const TaskModal = ({
                     </div>
                 </div>
                 <div className="grid gap-1">
-                    <label htmlFor="category">Category <span className="text-red-500">*</span></label>
+                    <label htmlFor="category">
+                        Category <span className="text-red-500">*</span>
+                    </label>
                     <select
                         className="bg-primary p-3 md:p-4 rounded-lg md:rounded-xl focus:outline-green"
                         name="category"
