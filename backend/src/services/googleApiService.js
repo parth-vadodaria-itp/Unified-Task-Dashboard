@@ -59,19 +59,26 @@ const events = async (req, res) => {
                 auth: oauth2Client,
             });
 
-            const nextWeek = new Date();
-            nextWeek.setDate(nextWeek.getDate() + 7);
+            // const nextWeek = new Date();
+            // nextWeek.setDate(nextWeek.getDate() + 7);
+            const startTime = new Date();
+            startTime.setHours(0, 0, 0, 0);
+
+            const endTime = new Date();
+            endTime.setHours(23, 59, 59, 999);
 
             const response = await calendar.events.list({
                 calendarId: "primary",
-                timeMin: new Date().toISOString(),
-                timeMax: nextWeek.toISOString(),
+                timeMin: startTime.toISOString(),
+                timeMax: endTime.toISOString(),
                 maxResults: 10,
                 singleEvents: true,
                 orderBy: "startTime",
             });
+
             const events = response.data.items.map((event) => {
                 return {
+                    id: event.id,
                     title: event.summary,
                     start: event.start,
                     end: event.end,
