@@ -1,12 +1,37 @@
+import "./config/env.js";
+
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+import gcalendarApiRouter from "./controllers/gcalenderApiController.js";
+import session from "express-session";
 
 const app = express();
-dotenv.config();
+
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(
+    cors({
+        origin: process.env.FRONTEND_URI,
+        credentials: true,
+    })
+);
+app.use(express.json());
+app.use(
+    session({
+        name: "calendar_session",
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+        },
+    })
+);
+
+app.use("/gcalendar", gcalendarApiRouter);
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
