@@ -23,7 +23,15 @@ const TaskList = ({ taskList, setIsTaskModalOpen, setEditTask }) => {
                                 checked={task.isCompleted}
                             />
                             <div className="peer-checked:line-through max-md:text-sm">
-                                {task.title}
+                                <div>{task.title}</div>
+                                {!task.dueDate || (
+                                    <div className="text-xs">
+                                        Due:{' '}
+                                        {new Date(
+                                            task.dueDate
+                                        ).toLocaleString()}
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className="flex gap-1 md:gap-4 text-sm md:text-xl text-border">
