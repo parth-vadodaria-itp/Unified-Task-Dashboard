@@ -47,7 +47,6 @@ const authCallback = async (req, res) => {
 };
 
 const events = async (req, res) => {
-    console.log(req.session);
     try {
         if (!req.session.user) {
             res.status(401).json("User not authenticated!");
