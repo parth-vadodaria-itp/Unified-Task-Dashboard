@@ -1,6 +1,13 @@
 import Database from "better-sqlite3";
+import fs from "fs";
 
-const db = new Database("./src/data/Todo.db");
+const dataDir = "./src/data";
+
+if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir);
+}
+
+const db = new Database(`${dataDir}/Todo.db`);
 db.pragma("journal_mode=WAL");
 
 db.exec(`
